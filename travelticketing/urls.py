@@ -23,4 +23,4 @@ urlpatterns = [
     path('api/', include('tickets.urls')),
 ]
 
-urlpatterns += staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
