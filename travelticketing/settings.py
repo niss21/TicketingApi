@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-rgp=mnk++i-8ivnr1dqh^q-@=_i3%2drwpy!43+tg1n2l21s@u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['ticketingapi.onrender.com', 'localhost', '127.0.0.1']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
