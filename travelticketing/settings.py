@@ -25,13 +25,16 @@ SECRET_KEY = 'django-insecure-rgp=mnk++i-8ivnr1dqh^q-@=_i3%2drwpy!43+tg1n2l21s@u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ticketingapi.onrender.com', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['ticketingapi.onrender.com', 'localhost', '127.0.0.1']
+# Ensure this is set for production
+ALLOWED_HOSTS = ['*']  # Set more restrictive allowed hosts in production
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 
 CORS_ALLOWED_ORIGINS = [
     'https://busgobus.vercel.app',
+    'http://localhost:5173/',
     # Add the domains you want to allow
 ]
 
@@ -167,5 +170,3 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# # Ensure this is set for production
-# ALLOWED_HOSTS = ['*']  # Set more restrictive allowed hosts in production
