@@ -18,7 +18,7 @@ class Vehicle(models.Model):
         ('taxi', 'Taxi'),
     ]
     vehicle_type = models.CharField(max_length=20, choices=VEHICLE_TYPES)
-    name = models.CharField(max_length=100, unique=True)  # Added vehicle name field
+    name = models.CharField(max_length=100)  # Added vehicle name field
     route = models.ForeignKey(Route, on_delete=models.CASCADE)
     departure_date = models.DateField()
     departure_time = models.TimeField()
