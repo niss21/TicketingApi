@@ -28,4 +28,7 @@ urlpatterns = [
 
     # book seat
     path('book-seats/', views.book_seats, name='book-seats'),
+
+    # list ticket by ph no.
+    path('bookings/<str:phone_number>/', views.bookings_by_phone, name='bookings_by_phone'),
 ]

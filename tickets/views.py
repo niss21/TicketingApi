@@ -108,24 +108,30 @@ def book_seats(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def bookings_by_phone(request, phone_number):
+    """
+    Get all bookings for a specific phone number.
+    """
+    # Filter bookings by phone number
+    bookings = Booking.objects.filter(phone_number=phone_number)
+    
+    if not bookings.exists():
+        return Response({"error": "No bookings found for this phone number"}, status=404)
 
-# # List available routes
-# class RouteListView(generics.ListAPIView):
-#     queryset = Route.objects.all()
-#     serializer_class = RouteSerializer
+    # Prepare booking data to return
+    booking_data = [
+        {
+            "user_name": booking.user_name,
+            "phone_number": booking.phone_number,
+            "vehicle_name": booking.vehicle.name,
+            "route": str(booking.vehicle.route),
+            "seat_id": booking.seat.seat_id,
+            "booking_time": booking.booking_time,
+        }
+        for booking in bookings
+    ]
 
-# # List vehicles for a given route and departure date
-# @api_view(['GET'])
-# def vehicle_list(request, route_id, departure_date):
-#     vehicles = Vehicle.objects.filter(route_id=route_id, departure_date=departure_date)
-#     serializer = VehicleSerializer(vehicles, many=True)
-#     return Response(serializer.data)
-
-# # List available seats for a selected vehicle
-# @api_view(['GET'])
-# def seat_list(request, vehicle_id):
-#     seats = Seat.objects.filter(vehicle_id=vehicle_id, is_booked=False)
-#     serializer = SeatSerializer(seats, many=True)
-#     return Response(serializer.data)
+    return Response({"bookings": booking_data}, status=200)
 
 
